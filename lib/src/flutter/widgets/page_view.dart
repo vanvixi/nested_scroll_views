@@ -96,6 +96,7 @@ class PageView extends StatefulWidget {
     this.allowImplicitScrolling = false,
     this.restorationId,
     this.clipBehavior = Clip.hardEdge,
+    this.hitTestBehavior = HitTestBehavior.opaque,
     this.scrollBehavior,
     this.padEnds = true,
   }) : childrenDelegate = SliverChildListDelegate(children);
@@ -141,6 +142,7 @@ class PageView extends StatefulWidget {
     this.allowImplicitScrolling = false,
     this.restorationId,
     this.clipBehavior = Clip.hardEdge,
+    this.hitTestBehavior = HitTestBehavior.opaque,
     this.scrollBehavior,
     this.padEnds = true,
   }) : childrenDelegate = SliverChildBuilderDelegate(
@@ -174,6 +176,7 @@ class PageView extends StatefulWidget {
     this.allowImplicitScrolling = false,
     this.restorationId,
     this.clipBehavior = Clip.hardEdge,
+    this.hitTestBehavior = HitTestBehavior.opaque,
     this.scrollBehavior,
     this.padEnds = true,
   });
@@ -263,6 +266,11 @@ class PageView extends StatefulWidget {
   ///
   /// Defaults to [Clip.hardEdge].
   final Clip clipBehavior;
+
+  /// {@macro flutter.widgets.scrollable.hitTestBehavior}
+  ///
+  /// Defaults to [HitTestBehavior.opaque].
+  final HitTestBehavior hitTestBehavior;
 
   /// {@macro flutter.widgets.shadow.scrollBehavior}
   ///
@@ -368,6 +376,7 @@ class _PageViewState extends State<PageView> {
         controller: _controller,
         physics: physics,
         restorationId: widget.restorationId,
+        hitTestBehavior: widget.hitTestBehavior,
         scrollBehavior: widget.scrollBehavior ?? ScrollConfiguration.of(context).copyWith(scrollbars: false),
         viewportBuilder: (BuildContext context, ViewportOffset position) {
           return Viewport(
